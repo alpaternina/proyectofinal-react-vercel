@@ -24,26 +24,19 @@ export const Checkout = () => {
             })
         })
 
-
-        createOrdenCompra(cliente, aux, totalPrice(), new Date().toISOString()).then(ordenCompra =>{
-            toast(`Muchas gracias por compara con nosotros!, su orden de compra con el id ${ordenCompra.id} por un total de $ ${new Intl.NumberFormat('de-DE').format(totalPrice())}fue realizada con exito`, {
-                position: "top-right",
-                autoClose: 5000,
-                hideProgressBar: false,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "dark",
-            });
-
+        if (cliente.email === cliente.confirmEmail) {
+        createOrdenCompra(cliente, aux, totalPrice(), new Date(). toISOString()).then(ordenCompra => {
+            toast.success(`Muchas gracias por su compra, su orden de compra con id ${ordenCompra.id}, por un total de $ USD ${new Intl.NumberFormat('de-DE').format (totalPrice())} fue realizada exitosamente, vuelve pronto`)
             e.target.reset()
             emptyCart()
             navigate("/")
-
         })
 
-
+    } else {
+        toast.error(`Los correos no son compatibles, por favor ingresar de nuevo el correo para finalizar tu compra`)    
     }
+
+}
     
     return (
 
@@ -66,8 +59,8 @@ export const Checkout = () => {
                             <input type="email" className="form-control" name="email"/>
                         </div>
                         <div className="mb-3">
-                            <label htmlFor="email" className="form-label">Confirmar Email</label>
-                            <input type="email" className="form-control" name="email"/>
+                            <label htmlFor="confirmEmail" className="form-label">Confirmar Email</label>
+                            <input type="email" className="form-control" name="confirmEmail"/>
                         </div>
                         <div className="mb-3">
                             <label htmlFor="dni" className="form-label">Documento</label>
