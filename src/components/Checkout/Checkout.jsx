@@ -33,7 +33,7 @@ export const Checkout = () => {
         })
 
     } else {
-        toast.error(`Los correos no son compatibles, por favor ingresar de nuevo el correo para finalizar tu compra`)    
+        toast.error(`Los Emails son diferentes, para finalizar la compra confirme su Email`)    
     }
 
 }
